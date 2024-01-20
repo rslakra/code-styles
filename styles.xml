@@ -18,6 +18,8 @@
     <!-- Check each Java file for violations. -->
     <module name="TreeWalker">
 
+        <!-- Checks for Naming Conventions. -->
+        <!-- See https://checkstyle.org/checks/naming/index.html -->
         <!-- Constants (public static finals) must be uppercase letters/digits/underscore. -->
         <module name="ConstantName">
             <property name="format" value="^[A-Z][A-Z0-9_]*$"/>
@@ -25,18 +27,8 @@
             <property name="severity" value="error"/>
         </module>
 
-        <!-- Duplicate import checking. -->
-        <module name="RedundantImport">
-            <property name="severity" value="error"/>
-        </module>
-
-        <!-- Unused imports checking. -->
-        <module name="UnusedImports">
-            <property name="severity" value="error"/>
-        </module>
-
-        <!-- Method name check. -->
-        <module name="MethodName">
+        <!-- Local variable name check. -->
+        <module name="LocalFinalVariableName">
             <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
             <property name="severity" value="error"/>
         </module>
@@ -47,21 +39,43 @@
             <property name="severity" value="error"/>
         </module>
 
-        <!-- Local variable name check. -->
-        <module name="LocalFinalVariableName">
-            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
-            <property name="severity" value="error"/>
-        </module>
-
         <!-- Member name check. -->
         <module name="MemberName">
             <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
             <property name="severity" value="error"/>
         </module>
 
+        <!-- Method name check. -->
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- Package name check. -->
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- <module name="ParameterName"/> -->
+        <module name="StaticVariableName">
+            <property name="format" value="^[A-Z][A-Z0-9_]*$"/>
+            <property name="severity" value="error"/>
+        </module>
+
         <!-- Class name check. -->
         <module name="TypeName">
             <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- Duplicate import checking. -->
+        <module name="RedundantImport">
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- Unused imports checking. -->
+        <module name="UnusedImports">
             <property name="severity" value="error"/>
         </module>
 
@@ -118,7 +132,7 @@
             <property name="severity" value="error"/>
         </module>
 
-        <!-- Not enforcing Javadoc checkstyles... for now -->
+        <!-- Not enforcing Javadoc checkstyle ... for now -->
         <!-- Simple Javadoc style check. -->
         <module name="JavadocStyle">
             <property name="severity" value="ignore"/>
