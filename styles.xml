@@ -11,7 +11,7 @@
 
     <!-- Enforce Unix newlines. -->
     <module name="NewlineAtEndOfFile">
-        <property name="lineSeparator" value="lf"/>
+        <property name="lineSeparator" value="lf_cr_crlf"/>
         <property name="severity" value="error"/>
     </module>
 
@@ -146,10 +146,15 @@
 
         <!-- Checks the Javadoc of a method or constructor. -->
         <module name="JavadocMethod">
-            <property name="scope" value="protected"/>
-            <property name="allowThrowsTagsForSubclasses" value="true"/>
-            <property name="allowUndeclaredRTE" value="true"/>
+            <!--            <property name="scope" value="protected"/>-->
+            <!--            <property name="allowThrowsTagsForSubclasses" value="true"/>-->
+            <!--            <property name="allowUndeclaredRTE" value="true"/>-->
             <property name="severity" value="ignore"/>
+        <!--            <property name="accessModifiers" value="package, private, public, protected"/>-->
+            <property name="allowMissingParamTags" value="false"/>
+<!--            <property name="tokens" value="CTOR_DEF, ANNOTATION_FIELD_DEF, METHOD_DEF, COMPACT_CTOR_DEF"/>-->
+            <property name="tokens" value="CTOR_DEF, ANNOTATION_FIELD_DEF, METHOD_DEF"/>
+            <property name="validateThrows" value="true"/>
         </module>
 
         <!-- Checks that variables have Javadoc comments. -->
@@ -158,12 +163,12 @@
             <property name="severity" value="ignore"/>
         </module>
 
-        <!-- Checks if a line it too long. -->
-        <module name="LineLength">
-            <property name="max" value="120"/>
-            <property name="severity" value="ignore"/>
         </module>
 
+    <!-- Checks if a line it too long. -->
+    <module name="LineLength">
+        <property name="max" value="120"/>
+        <property name="severity" value="ignore"/>
     </module>
 
 </module>
