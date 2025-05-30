@@ -7,6 +7,8 @@ The ```code-styles``` project defines the company code-styles applied in all rep
 
 # Build Status
 
+---
+
 [![pages-build-deployment](https://github.com/rslakra/code-styles/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/rslakra/code-styles/actions/workflows/pages/pages-build-deployment)
 
 
@@ -36,6 +38,12 @@ Run the program with the following command
 * [Java](https://www.java.com/en/download/mac_download.jsp) - The Java Download Location
 * [Maven](https://maven.apache.org/) - Dependency Management
 
+
+# Reference
+
+---
+
+- [Code Styles](https://rslakra.github.io/code-styles/)
 
 # Author
 
