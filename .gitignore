@@ -27,7 +27,6 @@ dist/
 # Maven
 .mvn/
 target/
-dist/
 
 # Gradle
 .gradle/
