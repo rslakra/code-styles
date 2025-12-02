@@ -79,6 +79,30 @@
             <property name="severity" value="error"/>
         </module>
 
+        <!-- Avoid star imports - enforce explicit imports -->
+        <module name="AvoidStarImport">
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- Detect fully qualified names used inline instead of imports -->
+        <!-- Matches patterns like: java.util.List, com.example.MyClass, org.apache.Something -->
+        <module name="RegexpSinglelineJava">
+            <property name="id" value="AvoidFullyQualifiedNames"/>
+            <property name="format" value="[^/\*\s]+(java|javax|org|com|net|io)\.[a-z]+(\.[a-z][a-zA-Z0-9]*)+\.[A-Z][a-zA-Z0-9]*[^;]"/>
+            <property name="ignoreComments" value="true"/>
+            <property name="message" value="Avoid using fully qualified class names. Use imports instead."/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Alternative: More aggressive check for any fully qualified names (2+ package segments + class) -->
+        <module name="RegexpSinglelineJava">
+            <property name="id" value="AvoidFullyQualifiedNamesGeneral"/>
+            <property name="format" value="(?&lt;!import\s)(?&lt;!import static\s)(?&lt;!package\s)[a-z][a-z0-9]*(\.[a-z][a-z0-9]*)+\.[A-Z][a-zA-Z0-9]*(?=\s*[&lt;(\s])"/>
+            <property name="ignoreComments" value="true"/>
+            <property name="message" value="Use import statements instead of fully qualified class names."/>
+            <property name="severity" value="warning"/>
+        </module>
+
         <!-- Left curly goes on end of line (eol). -->
         <module name="LeftCurly">
             <property name="option" value="eol"/>
