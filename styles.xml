@@ -89,6 +89,7 @@
         <!-- This can be easily extended by adding more types to the list -->
         <module name="RegexpSinglelineJava">
             <property name="id" value="AvoidRawTypesKnown"/>
+            <property name="format" value="(?&lt;!import\s)(?&lt;!import static\s)(?&lt;!&lt;)\b(List|Set|Map|Filter|Collection|Iterator|Comparable|Comparator|Iterable|Queue|Deque|Vector|Stack|Hashtable|Enumeration|Optional|Stream|Supplier|Consumer|Function|Predicate|BiFunction|BiConsumer|BiPredicate|UnaryOperator|BinaryOperator|Callable|Future|CompletableFuture|Executor|ExecutorService|ScheduledExecutorService)(?!\s*&lt;\?&gt;)\s+[a-z][a-zA-Z0-9]*(?=\s*[;=,)\]]|$)"/>
             <property name="format" value="(?&lt;!import\s)(?&lt;!import static\s)(?&lt;!&lt;)\b(List|Set|Map|Filter|Collection|Iterator|Comparable|Comparator|Iterable|Queue|Deque|Vector|Stack|Hashtable|Enumeration|Optional|Stream|Supplier|Consumer|Function|Predicate|BiFunction|BiConsumer|BiPredicate|UnaryOperator|BinaryOperator|Callable|Future|CompletableFuture|Executor|ExecutorService|ScheduledExecutorService)\s+[a-z][a-zA-Z0-9]*(?=\s*[;=,)\]]|$)"/>
             <property name="ignoreComments" value="true"/>
             <property name="message" value="Avoid using raw types. Generic types must include type parameters (e.g., List&lt;String&gt; instead of List)."/>
