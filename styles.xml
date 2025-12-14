@@ -23,7 +23,7 @@
         <!-- Constants (public static finals) must be uppercase letters/digits/underscore. -->
         <module name="ConstantName">
             <property name="format" value="^[A-Z][A-Z0-9_]*$"/>
-<!--            <property name="scope" value="public"/>-->
+            <!-- <property name="scope" value="public"/> -->
             <property name="severity" value="error"/>
         </module>
 
@@ -69,14 +69,44 @@
             <property name="severity" value="error"/>
         </module>
 
+        <!-- Avoid star imports - enforce explicit imports -->
+        <module name="AvoidStarImport">
+            <property name="severity" value="error"/>
+        </module>        
+
         <!-- Duplicate import checking. -->
         <module name="RedundantImport">
             <property name="severity" value="error"/>
         </module>
 
+        <!-- Detects illegal type extensions and implementations -->
+        <module name="IllegalType">
+            <property name="severity" value="error"/>
+            <property name="tokens" value="EXTENDS_CLAUSE, IMPLEMENTS_CLAUSE"/>
+        </module>
+
         <!-- Unused imports checking. -->
         <module name="UnusedImports">
             <property name="severity" value="error"/>
+        </module>
+
+        <!-- Detect fully qualified names used inline instead of imports -->
+        <!-- Matches patterns like: java.util.List, com.example.MyClass, org.apache.Something -->
+        <module name="RegexpSinglelineJava">
+            <property name="id" value="AvoidFullyQualifiedNames"/>
+            <property name="format" value="[^/\*\s]+(java|javax|org|com|net|io)\.[a-z]+(\.[a-z][a-zA-Z0-9]*)+\.[A-Z][a-zA-Z0-9]*[^;]"/>
+            <property name="ignoreComments" value="true"/>
+            <property name="message" value="Avoid using fully qualified class names. Use imports instead."/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Alternative: More aggressive check for any fully qualified names (2+ package segments + class) -->
+        <module name="RegexpSinglelineJava">
+            <property name="id" value="AvoidFullyQualifiedNamesGeneral"/>
+            <property name="format" value="(?&lt;!import\s)(?&lt;!import static\s)(?&lt;!package\s)[a-z][a-z0-9]*(\.[a-z][a-z0-9]*)+\.[A-Z][a-zA-Z0-9]*(?=\s*[&lt;(\s])"/>
+            <property name="ignoreComments" value="true"/>
+            <property name="message" value="Use import statements instead of fully qualified class names."/>
+            <property name="severity" value="warning"/>
         </module>
 
         <!-- Left curly goes on end of line (eol). -->
@@ -146,13 +176,13 @@
 
         <!-- Checks the Javadoc of a method or constructor. -->
         <module name="JavadocMethod">
-            <!--            <property name="scope" value="protected"/>-->
-            <!--            <property name="allowThrowsTagsForSubclasses" value="true"/>-->
-            <!--            <property name="allowUndeclaredRTE" value="true"/>-->
+            <!-- <property name="scope" value="protected"/>-->
+            <!-- <property name="allowThrowsTagsForSubclasses" value="true"/>-->
+            <!-- <property name="allowUndeclaredRTE" value="true"/>-->
             <property name="severity" value="ignore"/>
-        <!--            <property name="accessModifiers" value="package, private, public, protected"/>-->
+            <!-- <property name="accessModifiers" value="package, private, public, protected"/>-->
             <property name="allowMissingParamTags" value="false"/>
-<!--            <property name="tokens" value="CTOR_DEF, ANNOTATION_FIELD_DEF, METHOD_DEF, COMPACT_CTOR_DEF"/>-->
+            <!-- <property name="tokens" value="CTOR_DEF, ANNOTATION_FIELD_DEF, METHOD_DEF, COMPACT_CTOR_DEF"/>-->
             <property name="tokens" value="CTOR_DEF, ANNOTATION_FIELD_DEF, METHOD_DEF"/>
             <property name="validateThrows" value="true"/>
         </module>
@@ -163,7 +193,7 @@
             <property name="severity" value="ignore"/>
         </module>
 
-        </module>
+    </module>
 
     <!-- Checks if a line it too long. -->
     <module name="LineLength">
