@@ -79,10 +79,31 @@
             <property name="severity" value="error"/>
         </module>
 
-        <!-- Detects illegal type extensions and implementations -->
+        <!-- Detects illegal type usage in declarations, parameters, and return types -->
         <module name="IllegalType">
             <property name="severity" value="error"/>
-            <property name="tokens" value="EXTENDS_CLAUSE, IMPLEMENTS_CLAUSE"/>
+            </module>
+
+        <!-- Detect raw types - generics used without type parameters -->
+        <!-- Pattern 1: Comprehensive list of known generic types (standard library + common patterns) -->
+        <!-- This can be easily extended by adding more types to the list -->
+        <module name="RegexpSinglelineJava">
+            <property name="id" value="AvoidRawTypesKnown"/>
+            <property name="format" value="(?&lt;!import\s)(?&lt;!import static\s)(?&lt;!&lt;)\b(List|Set|Map|Filter|Collection|Iterator|Comparable|Comparator|Iterable|Queue|Deque|Vector|Stack|Hashtable|Enumeration|Optional|Stream|Supplier|Consumer|Function|Predicate|BiFunction|BiConsumer|BiPredicate|UnaryOperator|BinaryOperator|Callable|Future|CompletableFuture|Executor|ExecutorService|ScheduledExecutorService)\s+[a-z][a-zA-Z0-9]*(?=\s*[;=,)\]]|$)"/>
+            <property name="ignoreComments" value="true"/>
+            <property name="message" value="Avoid using raw types. Generic types must include type parameters (e.g., List&lt;String&gt; instead of List)."/>
+            <property name="severity" value="error"/>
+        </module>
+        
+        <!-- Pattern 2: Generic detection for custom types with common generic naming patterns -->
+        <!-- Catches types with suffixes that commonly indicate generics (Filter, Handler, Processor, etc.) -->
+        <!-- This helps catch custom generic types and future additions without hardcoding each one -->
+        <module name="RegexpSinglelineJava">
+            <property name="id" value="AvoidRawTypesCustom"/>
+            <property name="format" value="(?&lt;!import\s)(?&lt;!import static\s)(?&lt;!new\s)(?&lt;!class\s)(?&lt;!interface\s)(?&lt;!extends\s)(?&lt;!implements\s)(?&lt;!&lt;)\b([A-Z][a-zA-Z0-9]*(?:Filter|Handler|Processor|Provider|Factory|Builder|Manager|Service|Repository|Controller|Adapter|Converter|Transformer|Validator|Parser|Reader|Writer|Listener|Observer|Strategy|Template|Wrapper|Container))\s+[a-z][a-zA-Z0-9]*(?=\s*[;=,)\]]|$)(?!.*\b\1\s*&lt;)"/>
+            <property name="ignoreComments" value="true"/>
+            <property name="message" value="Potential raw type usage detected. If this is a generic type, include type parameters (e.g., Filter&lt;T&gt; instead of Filter)."/>
+            <property name="severity" value="warning"/>
         </module>
 
         <!-- Unused imports checking. -->
