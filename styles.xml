@@ -79,10 +79,9 @@
             <property name="severity" value="error"/>
         </module>
 
-        <!-- Detects illegal type extensions and implementations -->
+        <!-- Detects illegal type usage in declarations, parameters, and return types -->
         <module name="IllegalType">
             <property name="severity" value="error"/>
-            <property name="tokens" value="EXTENDS_CLAUSE, IMPLEMENTS_CLAUSE"/>
         </module>
 
         <!-- Unused imports checking. -->
