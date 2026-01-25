@@ -161,6 +161,12 @@
             <property name="severity" value="error"/>
         </module>
 
+        <!-- Checks if a line is too long. -->
+        <module name="LineLength">
+            <property name="max" value="120"/>
+            <property name="severity" value="ignore"/>
+        </module>
+
         <!-- Not enforcing Javadoc checkstyle ... for now -->
         <!-- Simple Javadoc style check. -->
         <module name="JavadocStyle">
@@ -192,12 +198,6 @@
             <property name="severity" value="ignore"/>
         </module>
 
-    </module>
-
-    <!-- Checks if a line it too long. -->
-    <module name="LineLength">
-        <property name="max" value="120"/>
-        <property name="severity" value="ignore"/>
     </module>
 
 </module>
